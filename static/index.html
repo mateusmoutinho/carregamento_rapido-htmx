@@ -14,11 +14,11 @@
     <br>
     <h3 hx-get="/visualiza" hx-trigger="every 0.1s"></h3>
     <br>
-    <button onclick=" fetch('/decrementa') ">
+    <button hx-post="/decrementa" hx-swap="none">
         DIMINUI
      </button>
 
-    <button onclick=" fetch('/incrementa') ">
+    <button hx-post="/incrementa" hx-swap="none">
        AUMENTA 
     </button>
 
