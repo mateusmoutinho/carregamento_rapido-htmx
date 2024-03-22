@@ -24,7 +24,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request ){
     }
     
 
-    return cweb.response.send_file("static/index.html",CWEB_AUTO_SET_CONTENT,200);
+    return cweb.response.send_file("index.html",CWEB_AUTO_SET_CONTENT,200);
 
     
     
@@ -33,7 +33,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request ){
 
 int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
-    struct CwebServer server = newCwebSever(5001, main_sever);
+    struct CwebServer server = newCwebSever(5002, main_sever);
     cweb.server.start(&server);
     return 0;
 }
