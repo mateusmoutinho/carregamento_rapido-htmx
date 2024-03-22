@@ -8,17 +8,23 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request ){
     if(strcmp(request->route,"/incrementa") ==0){
         valor_anterior+=1;
         dtw_write_long_file_content("valor",valor_anterior);
+        return cweb_send_text("ok",200);
+
     }
    
    if(strcmp(request->route,"/decrementa") ==0){
         valor_anterior-=1;
         dtw_write_long_file_content("valor",valor_anterior);
+        return cweb_send_text("ok",200);
     }
+    if(strcmp(request->route,"/visualiza") ==0){
+         char convertido[20] ={0};
+        sprintf(convertido,"%d",valor_anterior);
+        return cweb_send_text(convertido,200);
+    }
+    
 
-
-    char convertido[20] ={0};
-    sprintf(convertido,"%d",valor_anterior);
-    return cweb_send_text(convertido,200);
+    return cweb.response.send_file("static/index.html",CWEB_AUTO_SET_CONTENT,200);
 
     
     
@@ -27,7 +33,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request ){
 
 int main(int argc, char *argv[]){
     cweb = newCwebNamespace();
-    struct CwebServer server = newCwebSever(5000, main_sever);
+    struct CwebServer server = newCwebSever(5001, main_sever);
     cweb.server.start(&server);
     return 0;
 }
