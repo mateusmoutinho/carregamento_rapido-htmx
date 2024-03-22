@@ -19,7 +19,7 @@ CwebHttpResponse *main_sever(CwebHttpRequest *request ){
     }
     if(strcmp(request->route,"/visualiza") ==0){
          char convertido[20] ={0};
-        sprintf(convertido,"%d",valor_anterior);
+        sprintf(convertido,"%ld",valor_anterior);
         return cweb_send_text(convertido,200);
     }
     
